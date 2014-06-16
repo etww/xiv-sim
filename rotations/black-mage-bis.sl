@@ -1,6 +1,9 @@
 if (!CooldownRemaining(self, "raging-strikes") and ((AuraCount(self, "astral-fire", self) and MP(self) > 3000) or (AuraCount(self, "umbral-ice", self) and AuraCount(self, "thundercloud", self))))
 	use "raging-strikes";
 
+if (AuraCount(self, "swiftcast", self)) 
+	use "flare";
+
 if (AuraCount(self, "thundercloud", self) and (AuraTimeRemaining(self, "umbral-ice", self) > 4.9 or AuraTimeRemaining(self, "astral-fire", self) > 4.9) and !(AuraCount(self, "astral-fire", self) and AuraTimeRemaining(self, "thundercloud", self) > 2.5 and !(!AuraCount(target, "thunder-dot", self) and AuraTimeRemaining(self, "thundercloud", self) > 4.9 and (MP(self) > 638 + 80 or AuraCount(self, "firestarter", self)))))
 	use "thunder-iii";
 
@@ -18,6 +21,12 @@ if (AuraTimeRemaining(target, "thunder-dot", self) < 10.0 and (AuraCount(self, "
 
 if (AuraCount(self, "astral-fire", self) and MP(self) >= 319 * 2 + 80)
 	use "fire";
+	
+if (!CooldownRemaining(self, "swiftcast") and (CooldownRemaining(self, "convert") < 2.0) and (CooldownRemaining(self, "raging-strikes") > 12.0))
+	use "swiftcast";
+	
+if (MP(self) < 50 and AuraCount(self, "astral-fire", self) and !CooldownRemaining(self, "convert"))
+	use "convert";
 
 if (AuraCount(self, "astral-fire", self))
 	use "blizzard-iii";
